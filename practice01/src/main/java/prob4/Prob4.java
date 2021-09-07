@@ -6,9 +6,12 @@ public class Prob4 {
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
+		String a = scanner.nextLine();
+		System.out.println(a);
 
-		System.out.print("문자열을 입력하세요 : ");
-		String text = scanner.nextLine();
+		for (int i = 1; i <= a.length(); i++) {
+			System.out.println(a.substring(0, i));
+		}
 
 		
 		scanner.close();
