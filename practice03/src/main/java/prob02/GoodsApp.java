@@ -23,11 +23,13 @@ public class GoodsApp {
 			int stock = Integer.parseInt(index[2]);
 			goods[i] = new Goods(name, price, stock);
 			System.out.println(i);
+			System.out.println(goods.toString());
 		}
-		
+
 		// 상품 출력
-		for(int i =0; i<COUNT_GOODS;i++) {
-			System.out.println(goods[i].getName()+ "(가격:" + goods[i].getPrice() +"원)이" + goods[i].getStock()+"개 입고 되었습니다.");
+		for (int i = 0; i < COUNT_GOODS; i++) {
+			System.out.println(
+					goods[i].getName() + "(가격:" + goods[i].getPrice() + "원)이" + goods[i].getStock() + "개 입고 되었습니다.");
 		}
 
 		// 자원정리
