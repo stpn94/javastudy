@@ -9,6 +9,7 @@ public class Account {
 
 	public Account(String accountNo) {
 		this.accountNo = accountNo;
+		System.out.println(accountNo+" 계좌가 개설되었습니다.");
 	}
 
 	public Account(String accountNo, int balance) {
