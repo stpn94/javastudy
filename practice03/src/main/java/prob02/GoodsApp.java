@@ -18,10 +18,13 @@ public class GoodsApp {
 		for (int i = 0; i < COUNT_GOODS; i++) {
 			String line = scanner.nextLine();
 			String[] index = line.split(" ");
+			
 			String name = index[0];
 			int price = Integer.parseInt(index[1]);
 			int stock = Integer.parseInt(index[2]);
+			
 			goods[i] = new Goods(name, price, stock);
+			
 			System.out.println(i);
 			System.out.println(goods.toString());
 		}

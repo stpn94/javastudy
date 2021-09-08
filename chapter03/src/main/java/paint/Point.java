@@ -6,10 +6,13 @@ public class Point implements Drawable {
 
 	@Override
 	public void draw() {
+		// TODO Auto-generated method stub
 		show(true);
 	}
 
 	public Point(int x, int y) {
+		// TODO Auto-generated constructor stub
+
 		this.x = x;
 		this.y = y;
 	}

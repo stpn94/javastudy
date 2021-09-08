@@ -1,10 +1,10 @@
 package paint;
 
-import java.awt.Point;
-import java.awt.Shape;
-
 public class Main {
+
 	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
 		int x = 100;
 		int y = 200;
 

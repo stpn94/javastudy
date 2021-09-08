@@ -1,6 +1,7 @@
 package chapter03;
 
-public class SwapTest01 {
+public class SwapTest {
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
@@ -21,4 +22,6 @@ public class SwapTest01 {
 		n.val = temp;
 
 	}
+	
+
 }
