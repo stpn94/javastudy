@@ -38,7 +38,7 @@ public class TV {
 	}
 
 	void channel(int channel) {
-		if (channel <= 1 || channel >= 255) {
+		if (channel <= 1 || channel >= 255 || power==false) {
 			wrong();
 			return;
 		}
@@ -58,7 +58,7 @@ public class TV {
 	}
 
 	void volume(int volume) {
-		if (volume <= 0 || volume >= 100) {
+		if (volume <= 0 || volume >= 100 || power==false) {
 			wrong();
 			return;
 		}
