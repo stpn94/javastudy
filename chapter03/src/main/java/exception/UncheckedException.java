@@ -1,4 +1,4 @@
-package chapter03;
+package exception;
 
 public class UncheckedException {
 	/*

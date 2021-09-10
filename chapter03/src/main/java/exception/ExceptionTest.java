@@ -1,4 +1,4 @@
-package chapter03;
+package exception;
 
 public class ExceptionTest {
 
@@ -7,7 +7,6 @@ public class ExceptionTest {
 		/*
 			1. 예외 실행 : 코드 -> try -> catch(에외 처리) -> finally(지원 정리)
 			2. 정살 실행 : 코드 -> try -> finally(자원 정리) -> 코드
-		
 		
 		*/
 		
@@ -33,11 +32,11 @@ public class ExceptionTest {
 			
 		} finally {
 			
-			System.out.println("ㅃ2");
+			System.out.println("잘가");
 		
 		}
 		
-		System.out.println("wprlf");
+		System.out.println("하하");
 	}
 
 }

@@ -36,5 +36,6 @@
 		<module>practice06</module>
 		<module>chapter03</module>
 		<module>practiceTest</module>
+		<module>chapter04</module>
 	</modules>
 </project>

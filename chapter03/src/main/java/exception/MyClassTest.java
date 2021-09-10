@@ -1,4 +1,4 @@
-package chapter03;
+package exception;
 
 public class MyClassTest {
 	public static void main(String[] args) {
@@ -7,8 +7,7 @@ public class MyClassTest {
 			MyClass myClass = new MyClass();
 			myClass.danger();
 		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
+			System.out.println("error:"+e);
 		}
 	}
 }
