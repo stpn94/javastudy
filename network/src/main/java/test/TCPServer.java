@@ -17,19 +17,19 @@ public class TCPServer {
 			serverSocket = new ServerSocket();
 
 			// 2. 바인딩(binding) : Socket Address(IP Address + Port)
+			// IPAdress : 0.0.0.0 : 모든 IP로 부터의 연결을 허용.
 			serverSocket.bind(new InetSocketAddress("127.0.0.1", 5000));
 
 			// 3. accept
+			//클라이언트로 부터 요청을 기다린다.
 			Socket socket = serverSocket.accept(); // blocking
 
 			InetSocketAddress remoteInetSocketAddress = (InetSocketAddress) socket.getRemoteSocketAddress();
-
 			InetAddress remoteInetAddress = remoteInetSocketAddress.getAddress();
-
 			String remoteHostAddress = remoteInetAddress.getHostAddress();
 			int remotePort = remoteInetSocketAddress.getPort();
-
 			System.out.println("[server] connected by client[" + remoteHostAddress + ":" + remotePort + "]");
+
 
 			try {
 				// 4. IOStream 받아오기
@@ -42,12 +42,14 @@ public class TCPServer {
 					int readByteCount = is.read(buffer); // blocking
 
 					if (readByteCount == -1) {
-						// server 정상종료
+						// 클라이언트가 server 정상종료
 						System.out.println("[server] closed by client");
 						break;
 					}
-
+					
+					//인풋스트림리더가 하는거 직접 짜기
 					String data = new String(buffer, 0, readByteCount, "UTF-8");
+					
 					System.out.println("[server] received:" + data);
 
 					// 6. 데이터쓰기
