@@ -7,7 +7,6 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.net.SocketException;
 import java.util.Scanner;
 
 public class EchoClient {
@@ -63,7 +62,7 @@ public class EchoClient {
 				System.out.println("<<" + data);
 			}
 		} catch (IOException e) {
-			System.out.println("[Client] error:" + e);
+			log("[Client] error:"+ e +" ");
 		} finally {
 			try {
 				// 스캐너가 널이 아니면 닫는다

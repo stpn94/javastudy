@@ -12,12 +12,12 @@ import java.net.Socket;
 
 public class EchoServer {
 
-	//포트번호 설정
+	// 포트번호 설정
 	public static final int PORT = 6000;
 
 	public static void main(String[] args) {
-		
-		// 서버 소켓은 클로즈()땜에 바깥에  
+
+		// 서버 소켓은 클로즈()땜에 바깥에
 		ServerSocket serverSocket = null;
 		try {
 			// 1. 서버소켓 생성
@@ -31,41 +31,50 @@ public class EchoServer {
 			log("started.. [port:" + PORT + "]");
 
 			// 3. accept
-//			while (true) {
 
 			// 대기 상태 커넥트 하길 기다린다.
 			Socket socket = serverSocket.accept(); // blocking
 
-			InetSocketAddress remoteInetSocketAddress = (InetSocketAddress) socket.getRemoteSocketAddress();
-			InetAddress remoteInetAddress = remoteInetSocketAddress.getAddress();
-			String remoteHostAddress = remoteInetAddress.getHostAddress();
-			int remotePort = remoteInetSocketAddress.getPort();
-			System.out.println("[server] connected by client[" + remoteHostAddress + ":" + remotePort + "]");
+			InetSocketAddress inetRemoteSocketAddress = (InetSocketAddress) socket.getRemoteSocketAddress();
+			String remoteHostAddress = inetRemoteSocketAddress.getAddress().getHostAddress();
+			int remoteHostPort = inetRemoteSocketAddress.getPort();
 
-			BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
-			// 도착
-			// 보내주자
+			log("[server] connected by client[" + remoteHostAddress + ":" + remoteHostPort + "]");
+			try {
+				BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
+				// 도착
+				// 보내주자
 
-			// true하면 자동 플러시
-			PrintWriter pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"), true);
+				// true하면 자동 플러시
+				PrintWriter pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"), true);
 
-//				new EchoServerReceiveThread(socket).start();
+//		new EchoServerReceiveThread(socket).start();
 
-			while (true) {
-				String data = br.readLine();
-				if (data == null) {
-					log("closed by client");
-					// 조용히 빠져나온다
-					break;
+				while (true) {
+					String data = br.readLine();
+					if (data == null) {
+						log("closed by client");
+						// 조용히 빠져나온다
+						break;
+					}
+					log("received : " + data);
+
+					pw.println(data);
 				}
-				log("received : " + data);
-
-				pw.println(data);
+			} catch (IOException e) {
+				log("error: " + e);
+			} finally {
+				try {
+					if(socket != null && socket.isClosed() == false) {
+						socket.close();
+					}
+				} catch (IOException e2) {
+					e2.printStackTrace();
+				}
 			}
-
 		} catch (IOException e) {
 			// 에러나면
-			System.out.print("[server] error:" + e);
+			log("error: " + e);
 		} finally {
 			try {
 				if (serverSocket != null && !serverSocket.isClosed()) {

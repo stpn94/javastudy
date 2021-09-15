@@ -19,6 +19,7 @@ public class EchoServerReceiveThread extends Thread {
 
 	@Override
 	public void run() {
+		
 		InetSocketAddress remoteInetSocketAddress = (InetSocketAddress) socket.getRemoteSocketAddress();
 
 		InetAddress remoteInetAddress = remoteInetSocketAddress.getAddress();
