@@ -12,7 +12,7 @@ import java.net.SocketException;
 
 public class EchoServerReceiveThread extends Thread {
 	private Socket socket;
-	
+
 	public EchoServerReceiveThread(Socket socket) {
 		this.socket = socket;
 	}
@@ -30,8 +30,10 @@ public class EchoServerReceiveThread extends Thread {
 
 		try {
 			// 1. IOStream 생성(받아오기)
-			BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));// 버퍼리더는 개행이 있어야 보냄
-			PrintWriter pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"), true/* PrintWriter안에 버퍼가 차면 자동으로 flush */);
+			BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));// 버퍼리더는 개행이
+																											// 있어야 보냄
+			PrintWriter pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"),
+					true/* PrintWriter안에 버퍼가 차면 자동으로 flush */);
 
 			while (true) {
 				// 2. 데이터 읽기

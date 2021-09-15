@@ -40,6 +40,7 @@ public class LoginMain {
 	                                       PasswordDismatchException{
 		/* 코드 작성 */
 		for(User listuser : users) {
+			
 			if(!listuser.equals(user)) {
 				 throw new UserNotFoundException();
 			}

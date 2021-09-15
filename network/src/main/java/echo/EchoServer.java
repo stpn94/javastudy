@@ -12,10 +12,12 @@ import java.net.Socket;
 
 public class EchoServer {
 
+	//포트번호 설정
 	public static final int PORT = 6000;
 
 	public static void main(String[] args) {
-		// 서버 소켓은 바깥에 클로즈()땜에
+		
+		// 서버 소켓은 클로즈()땜에 바깥에  
 		ServerSocket serverSocket = null;
 		try {
 			// 1. 서버소켓 생성
