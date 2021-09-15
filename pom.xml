@@ -38,5 +38,6 @@
 		<module>practiceTest</module>
 		<module>chapter04</module>
 		<module>finaltest</module>
+		<module>network</module>
 	</modules>
 </project>
