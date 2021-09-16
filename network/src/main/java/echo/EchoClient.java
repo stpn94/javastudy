@@ -27,7 +27,7 @@ public class EchoClient {
 			// 2. 소켓 생성
 			socket = new Socket();
 
-			// 3. 서버 연결
+			// 3. 서버 연결dk
 			socket.connect(new InetSocketAddress(FRIEND_IP, EchoServer.PORT));
 			log("[Client] connected!");
 

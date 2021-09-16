@@ -20,12 +20,9 @@ public class EchoServerReceiveThread extends Thread {
 	@Override
 	public void run() {
 		
-		InetSocketAddress remoteInetSocketAddress = (InetSocketAddress) socket.getRemoteSocketAddress();
-
-		InetAddress remoteInetAddress = remoteInetSocketAddress.getAddress();
-
-		String remoteHostAddress = remoteInetAddress.getHostAddress();
-		int remotePort = remoteInetSocketAddress.getPort();
+		InetSocketAddress inetRemoteSocketAddress = (InetSocketAddress) socket.getRemoteSocketAddress();
+		String remoteHostAddress = inetRemoteSocketAddress.getAddress().getHostAddress();
+		int remotePort = inetRemoteSocketAddress.getPort();
 
 		System.out.println("[server] connected by client[" + remoteHostAddress + ":" + remotePort + "]");
 
