@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.io.Writer;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,6 +20,7 @@ public class ChatServerThread extends Thread {
 	private Socket socket;
 	private String nickname;
 	private List<Writer> listWriters; 
+	
 	Scanner scanner = null;
 	public ChatServerThread(Socket socket, List<Writer> listWriters) {
 		this.socket = socket;
@@ -41,23 +43,21 @@ public class ChatServerThread extends Thread {
 		log("[server] connected by client[" + remoteHostAddress + ":" + remotePort + "]");
 
 		// 2. 스트림 얻기
+		BufferedReader br = null;
+		PrintWriter pw = null;
 	
 		try {
-			BufferedReader br = null;
-			PrintWriter pw = null;
 			// IOStream 생성(받아오기)
-			pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"), true); // PrintWriter안에 버퍼가
 			br = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8")); // 버퍼리더는 개행이 있어야 보냄
+			pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"), true); // PrintWriter안에 버퍼가
 																									// 차면 자동으로 flush
 
+//			log("요청처리 시작");
 			// 3. 요청처리
 			while (true) {
-				log("요청처리 시작");
-				
+//				log(" 데이터 읽자");
 				// 데이터 읽자.
 				String request = br.readLine();
-				
-				log(" 데이터 읽자");
 				if (request == null) {
 					// 응답없으면
 					System.out.println("나감");
@@ -70,35 +70,35 @@ public class ChatServerThread extends Thread {
 				 * - chat 프로토콜 형식 - 요청명령: 파라미터1: 파라미터2: … \r\n - 각 요청을 구분하는 경계가 되는 것은 \r\n 이다. -
 				 * 요청은 “:” 기준으로 요청명령과 파라미터로 분리한다. - 각 각의 요청명령을 처리하는 메서드를 구현하고 호출한다.
 				 */
+//				log("토큰생성");
 				// 토큰 생성
 				String[] tokens = request.split(":");
-				log("토큰생성");
 				// 첫 번째 라인만 처리
 				if ("JOIN".equals(tokens[0])) {
-					log("74");
 					doJoin(tokens[1], pw);
+//					log("74");
 				} else if ("msg".equals(tokens[0])) {
-					log("77");
 					doMessages(tokens[1]);
+//					log("77");
 				} else if ("exit".equals(tokens[0])) {
-					System.out.println("나갔다");
-					log("80");
-					log("[server] \"" + request + "\" has left");
+//					System.out.println("나갔다");
+//					log("80");
+					log("[server] \"" + tokens[1] + "\" has left");
 					doExit(pw);
 					break;
 				} else {
-					log("[server85] error request:" + request);
+					log("[server85] error request:" + tokens[0]);
 				}
 			}
-		} catch (IOException e) {
-			
+		} catch (SocketException e) {
+			doExit(pw);
+		}catch (IOException e) {
 			log("[server87] error:" + e);
 		}
 	}
 
 	private void doExit(Writer writer) {
 		removeWriter(writer);
-
 		String data = nickname + "님이 퇴장 하였습니다.";
 		broadcast(data);
 
@@ -132,6 +132,7 @@ public class ChatServerThread extends Thread {
 
 		String data = nickname + "님이 참여하였습니다.";
 		broadcast(data);
+		
 		// writer pool에 저장
 		addWriter(pw);
 
@@ -156,7 +157,7 @@ public class ChatServerThread extends Thread {
 		 * 때문에 동기화 처리를 해 주어야 한다. - PrintWriter의 메서드를 사용해야 하기 때문에 다운 캐스팅을 명시적으로 해주었다.
 		 */
 		synchronized (listWriters) {
-			log("broadcast 통과");
+			log("broadcast 통과???");
 			for (Writer writer : listWriters) {
 				PrintWriter pw = (PrintWriter) writer;
 				pw.println(data);

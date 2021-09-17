@@ -11,7 +11,7 @@ import java.net.SocketTimeoutException;
 public class TCPClient {
 	// 
 	private static final String SERVER_IP = "127.0.0.1"; // 192.168.254.5
-	private static final int SERVER_PORT = 1245;
+	private static final int SERVER_PORT = 5000;
 
 	public static void main(String[] args) {
 		Socket socket = null;

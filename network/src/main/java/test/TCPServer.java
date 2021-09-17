@@ -16,6 +16,8 @@ public class TCPServer {
 			// 1. 서버소켓 생성
 			serverSocket = new ServerSocket();
 
+			
+			
 			// 2. 바인딩(binding) : Socket Address(IP Address + Port)
 			// IPAdress : 0.0.0.0 : 모든 IP로 부터의 연결을 허용.
 			serverSocket.bind(new InetSocketAddress("127.0.0.1", 5000));
@@ -49,10 +51,10 @@ public class TCPServer {
 					
 					//인풋스트림리더가 하는거 직접 짜기
 					String data = new String(buffer, 0, readByteCount, "UTF-8");
-					
 					System.out.println("[server] received:" + data);
 
 					// 6. 데이터쓰기
+					
 					os.write(data.getBytes("utf-8"));
 				}
 

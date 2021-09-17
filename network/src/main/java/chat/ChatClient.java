@@ -11,11 +11,12 @@ import java.util.Scanner;
 
 public class ChatClient { 
 	//private static final String SERVER_IP = "192.168.26.247";
+	
 	private static final String SERVER_IP = "127.0.0.1";
 
 	public static void main(String[] args) {
 		//1. 키보드 연결
-		//2. 소켓 생성
+		//2. 소켓 생성 
 		Socket socket = null;
 		Scanner scanner = null;
 
@@ -30,6 +31,7 @@ public class ChatClient {
 
 			//4. reader/writer 생성
 			PrintWriter pw = new PrintWriter((new OutputStreamWriter(socket.getOutputStream(), "UTF-8")), true);
+			
 			BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
 
 			
