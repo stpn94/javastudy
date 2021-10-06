@@ -13,7 +13,7 @@ import java.net.Socket;
 public class EchoServer {
 
 	// 포트번호 설정
-	public static final int PORT = 6000;
+	public static final int PORT = 8000;
 
 	public static void main(String[] args) {
 
