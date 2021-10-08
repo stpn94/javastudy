@@ -1,5 +1,7 @@
 # javastudy
 
+## 채팅프로그램 구현하기 TEST --- https://github.com/stpn94/javastudy/tree/master/network/src/main/java/test
+
 ## 블로그에 정리
 
 ## Java 입문 개발(환경 변수) 설정 tip.이클립스 설정      https://ok-vamos.tistory.com/3?category=884582
