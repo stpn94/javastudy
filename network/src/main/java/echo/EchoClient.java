@@ -10,7 +10,7 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class EchoClient {
- 
+//	http://220.119.26.29/ 선생님아이피
 	// 127.0.0.1 = 내 아이피
 	// 친구아이피 적으면 친구껄로 간다.
 //	private static final String SERVER_IP = "127.0.0.1";
